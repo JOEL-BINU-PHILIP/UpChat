@@ -1,10 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:upchat/colors.dart';
+import 'package:upchat/features/landing/screens/landing_screen.dart';
 import 'package:upchat/firebase_options.dart';
-import 'package:upchat/screens/mobileLayoutScreen.dart';
-import 'package:upchat/screens/webLayoutScreen.dart';
-import 'package:upchat/utils/responsiveLayout.dart';
+import 'package:upchat/router.dart';
+// import 'package:upchat/screens/mobileLayoutScreen.dart';
+// import 'package:upchat/screens/webLayoutScreen.dart';
+// import 'package:upchat/utils/responsiveLayout.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,12 +23,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Whatsapp UI',
       theme: ThemeData.dark().copyWith(
+        appBarTheme:const AppBarTheme(color: appBarColor),
         scaffoldBackgroundColor: backgroundColor,
       ),
-      home: const ResponsiveLayout(
-        mobileScreenLayout: MobileLayoutScreen(),
-        webScreenLayout: WebLayoutScreen(),
-      ),
+      onGenerateRoute:(settings) => generateRoute(settings),
+      home: const LandingScreen()
+      // const ResponsiveLayout(
+      //   mobileScreenLayout: MobileLayoutScreen(),
+      //   webScreenLayout: WebLayoutScreen(),
+      // ),
     );
   }
 }
